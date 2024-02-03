@@ -1,0 +1,82 @@
+//perso style
+.envoyeCard{
+      display: flex;
+    }
+    .champ{
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+    }
+    
+        /* --------------*/ 
+
+    .more-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .show-more-btn {
+      display: block;
+      margin: 20px auto 0;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-out;
+    }
+
+    .show-more-btn:hover {
+      background-color: #0062cc;
+    }
+    
+    
+    /*----*/
+    
+    
+    .navBar{
+        margin-top: 1.3rem;
+    }
+    .nav-dark{
+
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background-color: #212529;
+
+    }
+    .bln{
+        color:rgb(255, 255, 255);
+    }
+    .email1{
+        display: flex;
+        justify-content: end;
+        position: fixed;
+    }
+    .btn_active{
+        width: 20px;
+        height: 20px;
+        background: rgb(30, 190, 30);
+        border-radius: 50%;
+    }
+    .par_btn_activ{
+        display: flex;
+        column-gap: 10px;
+        margin-top: -3rem;
+
+    }
+
+    header.slide {
+    padding-top: 26rem;
+    padding-bottom: 12.5rem;
+    filter: brightness(0.5);
+    }
+    .champ1{
+        max-height: none;
+        margin: auto;
+        width: 35rem;
+    }
+    .hidden {
+        display: none;
+    }

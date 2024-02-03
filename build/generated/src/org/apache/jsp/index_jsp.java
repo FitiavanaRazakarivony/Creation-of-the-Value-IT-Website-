@@ -1,0 +1,481 @@
+package org.apache.jsp;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import table.demande_accExt;
+import table.visiteur;
+import table.titre;
+import table.employeur;
+import table.nosmetier;
+import table.chef;
+import Connexion.Connexion;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.*;
+
+public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
+    implements org.apache.jasper.runtime.JspSourceDependent {
+
+  private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
+
+  private static java.util.List<String> _jspx_dependants;
+
+  private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
+
+  public java.util.List<String> getDependants() {
+    return _jspx_dependants;
+  }
+
+  public void _jspService(HttpServletRequest request, HttpServletResponse response)
+        throws java.io.IOException, ServletException {
+
+    PageContext pageContext = null;
+    HttpSession session = null;
+    ServletContext application = null;
+    ServletConfig config = null;
+    JspWriter out = null;
+    Object page = this;
+    JspWriter _jspx_out = null;
+    PageContext _jspx_page_context = null;
+
+    try {
+      response.setContentType("text/html");
+      pageContext = _jspxFactory.getPageContext(this, request, response,
+      			null, true, 8192, true);
+      _jspx_page_context = pageContext;
+      application = pageContext.getServletContext();
+      config = pageContext.getServletConfig();
+      session = pageContext.getSession();
+      out = pageContext.getOut();
+      _jspx_out = out;
+      _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
+
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+
+    String e_mail= (String) session.getAttribute("email");    
+    Connection bdd = Connexion.connect();
+    ResultSet relt1 = employeur.afficher(e_mail,bdd);  
+    ResultSet relt = employeur.afficher(e_mail,bdd);    
+    ResultSet resul = demande_accExt.afficher(e_mail, bdd);
+    ResultSet res = nosmetier.getnosMetier(bdd);
+    ResultSet AllChef = chef.getAllChef(bdd);
+    ResultSet getALLTitre = titre.getTitreP(bdd);
+    
+
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html lang=\"en\">\n");
+      out.write("  <head>\n");
+      out.write("    <title>Value-IT</title>\n");
+      out.write("    <meta charset=\"utf-8\">\n");
+      out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n");
+      out.write("    <link rel=\"stylesheet\" href=\"css/aos.css\">  \n");
+      out.write("    <link rel=\"stylesheet\" href=\"css/flaticon.css\">\n");
+      out.write("    <link rel=\"stylesheet\" href=\"css/style.css\">\n");
+      out.write("  </head>\n");
+      out.write("  <body>\n");
+      out.write("\n");
+      out.write("    <nav class=\"navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light\" id=\"ftco-navbar\" data-aos=\"fade-down\" data-aos-delay=\"500\">\n");
+      out.write("      <div class=\"container\">\n");
+      out.write("        <a class=\"navbar-brand\" href=\"index.jsp\">\n");
+      out.write("          <img src=\"images/logo.png\" alt=\"image\" style=\"width: 10rem;height: 2rem;\">\n");
+      out.write("        </a>\n");
+      out.write("        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#ftco-nav\" aria-controls=\"ftco-nav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n");
+      out.write("          <span class=\"oi oi-menu\"></span> Menu\n");
+      out.write("        </button>\n");
+      out.write("\n");
+      out.write("        <div class=\"collapse navbar-collapse\" id=\"ftco-nav\">\n");
+      out.write("          <ul class=\"navbar-nav ml-auto\">\n");
+      out.write("            <li class=\"nav-item\"><a href=\"index.jsp\" class=\"nav-link\">Accueil</a></li>\n");
+      out.write("            <li class=\"nav-item\"><a href=\"page/publication.jsp\" class=\"nav-link\">Pulication</a></li>\n");
+      out.write("            <li class=\"nav-item\"><a href=\"page/A propos.jsp\" class=\"nav-link\">A propos</a></li>\n");
+      out.write("            <li class=\"nav-item\"><a href=\"page/recrutement.jsp\" class=\"nav-link\">Recrutement</a></li>\n");
+      out.write("            <li class=\"nav-item\"><a href=\"page/contact.jsp\" class=\"nav-link\">Contact</a></li>    \n");
+      out.write("          </ul>\n");
+      out.write("            <div class=\"row\">\n");
+      out.write("            ");
+      out.write("\n");
+      out.write("              ");
+ if (e_mail != null){ 
+      out.write("\n");
+      out.write("              <div>\n");
+      out.write("                <form action=\"DeconServlet\" method=\"GET\" style=\"margin-right: 0px;margin-left: 39px;margin-top: 5px;\">\n");
+      out.write("                    <button type=\"submit\" class=\"btn btn-danger\">Deconnexion <i class=\"fa fa-sign-out\"></i></button>\n");
+      out.write("                </form>\n");
+      out.write("              </div>\n");
+      out.write("              ");
+ } else {
+      out.write(" \n");
+      out.write("              <a href=\"page/login.jsp\" class=\"nav-link\" style=\"color: white;\">Se Connecter</a>\n");
+      out.write("              ");
+}
+      out.write("\n");
+      out.write("              \n");
+      out.write("            ");
+ while (relt.next()) { 
+      out.write("\n");
+      out.write("                <div class=\"par_btn_activ\" style=\"margin-top: 0rem;padding-right: -5px;padding-left: 7px;\">\n");
+      out.write("                    <div class=\"btn_active\"></div>\n");
+      out.write("                    <span class=\"bln size navbar-brand\">");
+ out.println(relt.getString("pseudo_visit")); 
+      out.write("</span> \n");
+      out.write("                    <span class=\"bln size navbar-brand\">");
+ out.println(relt.getString("pseudo_accext")); 
+      out.write("</span>\n");
+      out.write("                </div\n");
+      out.write("            ");
+ }
+      out.write(" \n");
+      out.write("            ");
+ while (resul.next()) { 
+      out.write("\n");
+      out.write("                <div class=\"par_btn_activ\" style=\"margin-top: 0rem;padding-right: -5px;padding-left: 7px;\">\n");
+      out.write("                    <div class=\"btn_active\"></div>\n");
+      out.write("                    <span class=\"bln size navbar-brand\">");
+ out.println(resul.getString("pseudo_accext")); 
+      out.write("</span>\n");
+      out.write("                </div\n");
+      out.write("            ");
+ }
+      out.write(" \n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
+      out.write("      </div>\n");
+      out.write("    </nav>\n");
+      out.write("    <!-- END nav -->\n");
+      out.write("    <section class=\"ftco-cover overlay\" style=\"background-color: black;\" id=\"section-home\" data-aos=\"fade\"  data-stellar-background-ratio=\"0.5\">\n");
+      out.write("      <div class=\"container\">\n");
+      out.write("        <div class=\"row align-items-center justify-content-center ftco-vh-100\">\n");
+      out.write("          <div class=\"col-md-8 text-center\">\n");
+      out.write("            <h1 class=\"ftco-heading mb-4\" data-aos=\"fade-up\" data-aos-delay=\"500\">Bonjour !<br> Bienvenue sur Value-IT</h1>\n");
+      out.write("            \n");
+      out.write("            ");
+      out.write("\n");
+      out.write("\n");
+      out.write("            ");
+ if (e_mail == null){ 
+      out.write("\n");
+      out.write("                <p data-aos=\"fade-up\"  data-aos-delay=\"700\">\n");
+      out.write("                    <a href=\"page/login.jsp\"  class=\"btn btn-outline-white px-4 py-3\" >Se Conneter</a>\n");
+      out.write("                </p>           \n");
+      out.write("            ");
+}
+      out.write("\n");
+      out.write("\n");
+      out.write("          </div>\n");
+      out.write("        </div>\n");
+      out.write("      </div>\n");
+      out.write("    </section>\n");
+      out.write("    <!-- END section -->\n");
+      out.write("\n");
+      out.write("     ");
+      out.write("\n");
+      out.write("    <section class=\"ftco-section-2\" style=\"margin-top: 67px;\">\n");
+      out.write("      <div class=\"container-fluid\">\n");
+      out.write("        <div class=\"section-2-blocks-wrapper row no-gutters\">\n");
+      out.write("          <div class=\"img col-sm-12 col-md-6\" style=\"background-image: url('images/image_4.jpg');\" data-aos=\"fade-right\">\n");
+      out.write("            <!-- <a href=\"https://vimeo.com/45830194\" class=\"button popup-vimeo\" data-aos=\"fade-right\" data-aos-delay=\"700\"><span class=\"ion-ios-play\"></span></a> -->\n");
+      out.write("          </div>\n");
+      out.write("          <div class=\"text col-md-6\">\n");
+      out.write("            <div class=\"text-inner align-self-start\" data-aos=\"fade-up\">\n");
+      out.write("              \n");
+      out.write("              <h3>Value-IT a été initialement un centre de production offshore de Workit Software siégé à Paris. Depuis décembre 2020</h3>\n");
+      out.write("              <p>\n");
+      out.write("                  Value IT est une entreprise innovante qui se\n");
+      out.write("                  spécialise dans la collecte et le traitement des prix online. \n");
+      out.write("                  Avec des millions de prix relevés plusieurs fois par jour, \n");
+      out.write("                  un haut niveau de service, des applications SaaS et \n");
+      out.write("                  la qualité des data, elle permet d'offrir une solution de veille concurrentielle B2B parmi\n");
+      out.write("                  les plus performantes du marché. ValueIT est à la pointe de la technologie et des process : \n");
+      out.write("                  NoSQL, Big Data, Event-Driven Architecture, Business Activity Monitoring/BI, Agile/Kanban...\n");
+      out.write("              </p>\n");
+      out.write("\n");
+      out.write("              <p>\n");
+      out.write("                  L'activité principale de WorkIT Software est la\"Veille concurrentielle de prix\" plus précisément,\n");
+      out.write("                  en termes de production, collecte des données des sites e-commerces. Ces données sont vendues aux \n");
+      out.write("                  180 clients en Europe afin que ces derniers puissent prendre des décisions sur les positionnements\n");
+      out.write("                  de leurs produits sur le marché.\n");
+      out.write("              </p>\n");
+      out.write("            </div>\n");
+      out.write("          </div>\n");
+      out.write("        </div>\n");
+      out.write("      </div>\n");
+      out.write("    </section>\n");
+      out.write("    ");
+      out.write("\n");
+      out.write("\n");
+      out.write("    ");
+      out.write("\n");
+      out.write("    <div class=\"ftco-section bck_image\">\n");
+      out.write("        <div class=\"container\" >\n");
+      out.write("            <div class=\"row justify-content-center\">\n");
+      out.write("                <div class=\"col-md-7 text-center\" data-aos=\"fade-up\">\n");
+      out.write("                    <h2>Nos Metiers</h2>\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("\n");
+      out.write("            <div class=\"row nosMetier\">\n");
+      out.write("                ");
+      out.write("\n");
+      out.write("                ");
+ while (res.next()) { 
+      out.write("\n");
+      out.write("                <div class=\"col-md-6 col-lg-4\" data-aos=\"fade-up\">\n");
+      out.write("                    <div class=\"media block-6 d-block text-center\">\n");
+      out.write("                        <div class=\"icon mb-4\"><span class=\"flaticon-gavel\"></span></div>\n");
+      out.write("                        <div class=\"media-body\">\n");
+      out.write("                            <h3 class=\"heading\">");
+ out.println(res.getString("nom_nosMet")); 
+      out.write("</h3>\n");
+      out.write("                            <p>");
+ out.println(res.getString("description_nosMet")); 
+      out.write("</p>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div> \n");
+      out.write("                </div>\n");
+      out.write("                ");
+ }
+      out.write("\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
+      out.write("    </div>\n");
+      out.write("     ");
+      out.write("\n");
+      out.write("\n");
+      out.write("     ");
+      out.write("     \n");
+      out.write("      <section class=\"page-section bg-light\" id=\"team\">\n");
+      out.write("          <div class=\"container\" id=\"chef\" data-aos=\"fade-up\">\n");
+      out.write("\n");
+      out.write("            <div class=\"row justify-content-center mb-5 pb-5\">\n");
+      out.write("                <div class=\"col-md-7 text-center\"  data-aos=\"fade-up\">\n");
+      out.write("                  <h2>Notre chefs d'équipe</h2>\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("              <div class=\"row\" data-aos=\"fade-up\" style=\"margin-top: 71px;\">\n");
+      out.write("                ");
+ while (AllChef.next()) { 
+      out.write("\n");
+      out.write("                  <div class=\"col-lg-4 \" style=\"box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.04);\" data-aos=\"fade-up\">\n");
+      out.write("                      <div class=\"team-member\" style=\"display: flex;flex-direction: column;\" >\n");
+      out.write("                          <div class=\"image\" style=\"margin: auto;\">\n");
+      out.write("                                <img class=\"mx-auto rounded-circle\" src=\"image/");
+ out.println(AllChef.getString("imageLead")); 
+      out.write("\" alt=\"image\" style=\"width: 13rem;height: 13rem;\"/>\n");
+      out.write("                          </div>\n");
+      out.write("                          <h4 class=\"my-3\">");
+ out.println(AllChef.getString("nomLead")); 
+      out.write("</h4> <span>");
+ out.println(AllChef.getString("prenomLead")); 
+      out.write("</span>\n");
+      out.write("                          <p class=\"text-muted\">Lead ");
+ out.println(AllChef.getString("nom_nosMet")); 
+      out.write("</p>\n");
+      out.write("                      </div>\n");
+      out.write("                  </div>\n");
+      out.write("                ");
+ }
+      out.write("\n");
+      out.write("              </div>\n");
+      out.write("              <div class=\"commentaire\">\n");
+      out.write("                  <div class=\"row\">\n");
+      out.write("                      <div class=\"col-lg-8 mx-auto text-center\"><p class=\"large text-muted\" style=\"margin-top: 74px;\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>\n");
+      out.write("                  </div>\n");
+      out.write("              </div>\n");
+      out.write("          </div>\n");
+      out.write("      </section>\n");
+      out.write("     ");
+      out.write("  \n");
+      out.write("     \n");
+      out.write("     ");
+      out.write("   \n");
+      out.write("     \n");
+      out.write("            ");
+      out.write("\n");
+      out.write("\n");
+      out.write("        ");
+ if (e_mail == null){ 
+      out.write("\n");
+      out.write("      <div class=\"ftco-section\">\n");
+      out.write("            <div class=\"container\">\n");
+      out.write("              <div class=\"row justify-content-center mb-5 pb-5\">\n");
+      out.write("                <div class=\"col-md-7 text-center\"  data-aos=\"fade-up\">\n");
+      out.write("                  <h2>Contactez nous</h2>\n");
+      out.write("                </div>\n");
+      out.write("              </div>\n");
+      out.write("              <div class=\"row block-9\" data-aos=\"fade-up\">\n");
+      out.write("                <div class=\"col-md-6 pr-md-5\">\n");
+      out.write("                  <form action=\"insertionContact_ext\" method=\"POST\">\n");
+      out.write("                    <div class=\"form-group\">\n");
+      out.write("                      <input type=\"text\" class=\"form-control\" placeholder=\"Nom\" name=\"nom\">\n");
+      out.write("                    </div>\n");
+      out.write("                    <div class=\"form-group\">\n");
+      out.write("                      <input type=\"text\" class=\"form-control\" placeholder=\"Prenom\" name=\"prenom\">\n");
+      out.write("                    </div>\n");
+      out.write("                    <div class=\"form-group\">\n");
+      out.write("                      <input type=\"text\" class=\"form-control\" placeholder=\"Email\" name=\"email\">\n");
+      out.write("                    </div>\n");
+      out.write("                    <div class=\"form-group\">\n");
+      out.write("                      <textarea id=\"\" cols=\"30\" rows=\"7\" class=\"form-control\" name=\"mp\" placeholder=\"Message\"></textarea>\n");
+      out.write("                    </div>\n");
+      out.write("                    <div class=\"form-group\">\n");
+      out.write("                      <input type=\"submit\" value=\"Envoyer\" class=\"btn btn-primary\">\n");
+      out.write("                    </div>\n");
+      out.write("                  </form>\n");
+      out.write("                </div>\n");
+      out.write("                  ");
+      out.write("\n");
+      out.write("                  <div class=\"col-md-6\" data-aos=\"fade-up\" id=\"carteId\">\n");
+      out.write("                      \n");
+      out.write("                  </div>\n");
+      out.write("              </div>\n");
+      out.write("            </div>\n");
+      out.write("      </div>        \n");
+      out.write("        ");
+ } else { 
+      out.write("\n");
+      out.write("            ");
+      out.write("\n");
+      out.write("\n");
+      out.write("      <div class=\"ftco-section\">\n");
+      out.write("          <div class=\"container\">\n");
+      out.write("            <div class=\"row justify-content-center mb-5 pb-5\">\n");
+      out.write("              <div class=\"col-md-7 text-center\"  data-aos=\"fade-up\">\n");
+      out.write("                <h2>Contactez nous</h2>\n");
+      out.write("              </div>\n");
+      out.write("            </div>\n");
+      out.write("            <div class=\"row block-9\" data-aos=\"fade-up\">\n");
+      out.write("              <div class=\"col-md-6 pr-md-5\">\n");
+      out.write("                <form action=\"insertionContact_int\" method=\"POST\">\n");
+      out.write("                    \n");
+      out.write("                    ");
+      out.write("\n");
+      out.write("                    \n");
+      out.write("            ");
+ while (relt1.next()) { 
+      out.write("\n");
+      out.write("              <input type=\"hidden\" name=\"id\" value=\"");
+ out.println(relt1.getString("id_visit")); 
+      out.write("\">\n");
+      out.write("            ");
+ }
+      out.write("\n");
+      out.write("            \n");
+      out.write("                  <div class=\"form-group\">\n");
+      out.write("                    <textarea id=\"\" cols=\"30\" rows=\"7\" class=\"form-control\" name=\"mp\" placeholder=\"Message\"></textarea>\n");
+      out.write("                  </div>\n");
+      out.write("                  <div class=\"form-group\">\n");
+      out.write("                    <input type=\"submit\" value=\"Envoyer\" class=\"btn btn-primary\">\n");
+      out.write("                  </div>\n");
+      out.write("                </form>\n");
+      out.write("              </div>\n");
+      out.write("                  <div class=\"col-md-6\" data-aos=\"fade-up\" id=\"carteId\"></div>\n");
+      out.write("            </div>\n");
+      out.write("          </div>\n");
+      out.write("      </div>\n");
+      out.write("        ");
+ } 
+      out.write("\n");
+      out.write("     ");
+      out.write("     \n");
+      out.write("     ");
+      out.write("     \n");
+      out.write("  \n");
+      out.write("  <footer class=\"ftco-footer ftco-bg-dark ftco-section\">\n");
+      out.write("    <div class=\"container\">\n");
+      out.write("      <div class=\"row mb-5\">\n");
+      out.write("        <div class=\"col-md\">\n");
+      out.write("          <div class=\"ftco-footer-widget mb-4\">\n");
+      out.write("            <h2 class=\"ftco-heading-2\">A propos Value-IT</h2>\n");
+      out.write("            <ul class=\"list-unstyled\">\n");
+      out.write("                <li><a href=\"page/A propos.jsp\" class=\"py-2 d-block\">A propos</a></li>\n");
+      out.write("                <li><a href=\"page/publication.jsp\" class=\"py-2 d-block\">Publications</a></li>\n");
+      out.write("                <li><a href=\"page/contact.jsp\" class=\"py-2 d-block\">Contact</a></li>\n");
+      out.write("            </ul>\n");
+      out.write("          </div>\n");
+      out.write("        </div>\n");
+      out.write("        <div class=\"col-md\">\n");
+      out.write("           <div class=\"ftco-footer-widget mb-4\">\n");
+      out.write("            <h2 class=\"ftco-heading-2\">Communauté</h2>\n");
+      out.write("            <ul class=\"list-unstyled\">\n");
+      out.write("                <li><a href=\"page/recrutement.jsp\" class=\"py-2 d-block\">Recrutement</a></li>\n");
+      out.write("            </ul>\n");
+      out.write("          </div>\n");
+      out.write("        </div>\n");
+      out.write("      </div>\n");
+      out.write("        <div class=\"row\">\n");
+      out.write("            <div class=\"col-md-12 text-center\"></div>\n");
+      out.write("        </div>\n");
+      out.write("  </footer>\n");
+      out.write("\n");
+      out.write("  <!-- loader -->\n");
+      out.write("  <div id=\"ftco-loader\" class=\"show fullscreen\"><svg class=\"circular\" width=\"48px\" height=\"48px\"><circle class=\"path-bg\" cx=\"24\" cy=\"24\" r=\"22\" fill=\"none\" stroke-width=\"4\" stroke=\"#eeeeee\"/><circle class=\"path\" cx=\"24\" cy=\"24\" r=\"22\" fill=\"none\" stroke-width=\"4\" stroke-miterlimit=\"10\" stroke=\"#F96D00\"/></svg></div>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("  <script src=\"js/jquery.min.js\"></script>\n");
+      out.write("  <script src=\"js/jquery-migrate-3.0.1.min.js\"></script>\n");
+      out.write("  <script src=\"js/popper.min.js\"></script>\n");
+      out.write("  <script src=\"js/bootstrap.min.js\"></script>\n");
+      out.write("  <script src=\"js/jquery.easing.1.3.js\"></script>\n");
+      out.write("  <script src=\"js/jquery.waypoints.min.js\"></script>\n");
+      out.write("  <script src=\"js/jquery.stellar.min.js\"></script>\n");
+      out.write("  <script src=\"js/owl.carousel.min.js\"></script>\n");
+      out.write("  <script src=\"js/jquery.magnific-popup.min.js\"></script>\n");
+      out.write("  <script src=\"js/aos.js\"></script>\n");
+      out.write("  <script src=\"js/jquery.animateNumber.min.js\"></script>\n");
+      out.write("  <script src=\"js/main.js\"></script>\n");
+      out.write("<!-- maps -->\n");
+      out.write("  <script type=\"text/javascript\"src=\"https://maps.googleapis.com/maps/api/js?sensor=false\"></script>\n");
+      out.write("  <script src=\"js/js_maps/maps.js\"></script>\n");
+      out.write("  \n");
+      out.write("<script type=\"text/javascript\"\n");
+      out.write("src=\"https://maps.googleapis.com/maps/api/js?sensor=false\">\n");
+      out.write("</script>\n");
+      out.write("<script type=\"text/javascript\">\n");
+      out.write("    function initialize() {\n");
+      out.write("    var mapOptions = {\n");
+      out.write("    center: new google.maps.LatLng(-18.955977780739268, 47.51789953701953),\n");
+      out.write("    zoom: 20,\n");
+      out.write("    mapTypeId:google.maps.MapTypeId.SATELLITE\n");
+      out.write("\n");
+      out.write("    };\n");
+      out.write("    var carte = new google.maps.Map(document.getElementById(\"carteId\"),\n");
+      out.write("    mapOptions);\n");
+      out.write("    var location = new google.maps.LatLng(-18.955977780739268, 47.51789953701953);\n");
+      out.write("    var marker = new google.maps.Marker({\n");
+      out.write("    position: location,\n");
+      out.write("    draggable: true, \n");
+      out.write("    map: carte\n");
+      out.write("    });\n");
+      out.write("    }\n");
+      out.write("    google.maps.event.addDomListener(window, 'load', initialize);\n");
+      out.write("\n");
+      out.write("</script>\n");
+      out.write("  \n");
+      out.write("  </body>\n");
+      out.write("</html>");
+    } catch (Throwable t) {
+      if (!(t instanceof SkipPageException)){
+        out = _jspx_out;
+        if (out != null && out.getBufferSize() != 0)
+          out.clearBuffer();
+        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+        else throw new ServletException(t);
+      }
+    } finally {
+      _jspxFactory.releasePageContext(_jspx_page_context);
+    }
+  }
+}

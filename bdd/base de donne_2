@@ -1,0 +1,503 @@
+CREATE TABLE admin(
+   id_admin INT,
+   nom_admin VARCHAR(250) NOT NULL,
+   prenom_admin VARCHAR(250) NOT NULL,
+   motdepass_admin VARCHAR(50) NOT NULL,
+   email_admin VARCHAR(110) NOT NULL,
+   type_admin VARCHAR(50),
+   PRIMARY KEY(id_admin),
+   UNIQUE(email_admin),
+   UNIQUE(type_admin)
+);
+
+CREATE TABLE nosMetier(
+   id_nosMet INT,
+   nom_nosMet VARCHAR(100) NOT NULL,
+   description_nosMet VARCHAR(250) NOT NULL,
+   PRIMARY KEY(id_nosMet),
+   UNIQUE(nom_nosMet),
+   UNIQUE(description_nosMet)
+);
+
+CREATE TABLE Annonce(
+   id_ann INT,
+   annonce TEXT NOT NULL,
+   typeAnn VARCHAR(50) NOT NULL,
+   id_nosMet INT NOT NULL,
+   PRIMARY KEY(id_ann),
+   FOREIGN KEY(id_nosMet) REFERENCES nosMetier(id_nosMet)
+);
+
+CREATE TABLE titre_pub(
+   id_tittrePub INT,
+   titre_pub VARCHAR(250) NOT NULL,
+   PRIMARY KEY(id_tittrePub),
+   UNIQUE(titre_pub)
+);
+
+CREATE TABLE sousTitre_pub(
+   id_sousTitre INT,
+   soustitre_pub VARCHAR(100) NOT NULL,
+   id_tittrePub INT NOT NULL,
+   PRIMARY KEY(id_sousTitre),
+   UNIQUE(soustitre_pub),
+   FOREIGN KEY(id_tittrePub) REFERENCES titre_pub(id_tittrePub)
+);
+
+CREATE TABLE Chef(
+   id_lead INT,
+   imageLead TEXT NOT NULL,
+   nomLead VARCHAR(100) NOT NULL,
+   prenomLead VARCHAR(100) NOT NULL,
+   id_nosMet INT NOT NULL,
+   PRIMARY KEY(id_lead),
+   FOREIGN KEY(id_nosMet) REFERENCES nosMetier(id_nosMet)
+);
+
+CREATE TABLE sexe(
+   id_sexe INT,
+   sexe VARCHAR(100) NOT NULL,
+   PRIMARY KEY(id_sexe)
+);
+
+CREATE TABLE competence(
+   id_compet INT,
+   competence TEXT NOT NULL,
+   id_nosMet INT NOT NULL,
+   PRIMARY KEY(id_compet),
+   FOREIGN KEY(id_nosMet) REFERENCES nosMetier(id_nosMet)
+);
+
+CREATE TABLE typeContrat(
+   id_typeContra INT,
+   type_Contrat VARCHAR(50) NOT NULL,
+   PRIMARY KEY(id_typeContra),
+   UNIQUE(type_Contrat)
+);
+
+CREATE TABLE contact_ext(
+   id_contExt INT,
+   date_contExt DATE NOT NULL,
+   contact_contExt TEXT NOT NULL,
+   nom_contExt VARCHAR(150) NOT NULL,
+   prenom_contEx VARCHAR(150) NOT NULL,
+   email_contExt VARCHAR(150) NOT NULL,
+   PRIMARY KEY(id_contExt)
+);
+
+CREATE TABLE demande_demE(
+   id_demEx INT,
+   objet_demEx VARCHAR(50) NOT NULL,
+   contenu_demEx VARCHAR(50) NOT NULL,
+   date_demEx DATE NOT NULL,
+   PRIMARY KEY(id_demEx)
+);
+
+CREATE TABLE objet_demandei(
+   id_objetDemI INT,
+   objet_demandeI VARCHAR(100) NOT NULL,
+   PRIMARY KEY(id_objetDemI)
+);
+
+CREATE TABLE publication(
+   id_pub INT,
+   date_pub DATE NOT NULL,
+   info_pub VARCHAR(250) NOT NULL,
+   image VARCHAR(250) NOT NULL,
+   id_tittrePub INT NOT NULL,
+   PRIMARY KEY(id_pub),
+   UNIQUE(image),
+   FOREIGN KEY(id_tittrePub) REFERENCES titre_pub(id_tittrePub)
+);
+
+CREATE TABLE visiteur(
+   id_visit INT,
+   nom_visit VARCHAR(150) NOT NULL,
+   prenom_visit VARCHAR(150) NOT NULL,
+   tel_visit VARCHAR(16) NOT NULL,
+   email_visit VARCHAR(250) NOT NULL,
+   motdepass_visit VARCHAR(11) NOT NULL,
+   adress_visit VARCHAR(100) NOT NULL,
+   type_visit VARCHAR(50) NOT NULL,
+   image_visit VARCHAR(250) NOT NULL,
+   id_nosMet INT NOT NULL,
+   id_sexe INT NOT NULL,
+   PRIMARY KEY(id_visit),
+   UNIQUE(tel_visit),
+   UNIQUE(email_visit),
+   FOREIGN KEY(id_nosMet) REFERENCES nosMetier(id_nosMet),
+   FOREIGN KEY(id_sexe) REFERENCES sexe(id_sexe)
+);
+
+CREATE TABLE contact(
+   id_cont INT,
+   date_cont DATE NOT NULL,
+   contact_cont TEXT NOT NULL,
+   id_visit INT,
+   PRIMARY KEY(id_cont),
+   FOREIGN KEY(id_visit) REFERENCES visiteur(id_visit)
+);
+
+CREATE TABLE informSuppl(
+   id_nosMet INT,
+   salaire VARCHAR(200) NOT NULL,
+   horairTrav VARCHAR(40) NOT NULL,
+   id_typeContra INT NOT NULL,
+   PRIMARY KEY(id_nosMet),
+   FOREIGN KEY(id_nosMet) REFERENCES nosMetier(id_nosMet),
+   FOREIGN KEY(id_typeContra) REFERENCES typeContrat(id_typeContra)
+);
+
+CREATE TABLE demandeurExterne(
+   id_eurExt INT,
+   nom_eurExt VARCHAR(100) NOT NULL,
+   prenom_eurExt VARCHAR(100) NOT NULL,
+   tel_eurExt VARCHAR(16) NOT NULL,
+   email_eurExt VARCHAR(150) NOT NULL,
+   adresse_eurExt VARCHAR(100) NOT NULL,
+   cv_demExt VARCHAR(50) NOT NULL,
+   id_demEx INT NOT NULL,
+   id_ann INT NOT NULL,
+   id_sexe INT NOT NULL,
+   PRIMARY KEY(id_eurExt),
+   UNIQUE(tel_eurExt),
+   UNIQUE(email_eurExt),
+   FOREIGN KEY(id_demEx) REFERENCES demande_demE(id_demEx),
+   FOREIGN KEY(id_ann) REFERENCES Annonce(id_ann),
+   FOREIGN KEY(id_sexe) REFERENCES sexe(id_sexe)
+);
+
+CREATE TABLE demande_demI(
+   id_demI INT,
+   contenu_demI VARCHAR(50) NOT NULL,
+   date_demI DATE NOT NULL,
+   ficheDePoste_demI VARCHAR(50) NOT NULL,
+   id_objetDemI INT NOT NULL,
+   PRIMARY KEY(id_demI),
+   FOREIGN KEY(id_objetDemI) REFERENCES objet_demandei(id_objetDemI)
+);
+
+CREATE TABLE demande_accExt(
+   id_eurExt INT,
+   PRIMARY KEY(id_eurExt),
+   FOREIGN KEY(id_eurExt) REFERENCES demandeurExterne(id_eurExt)
+);
+
+CREATE TABLE demande_refExt(
+   id_eurExt INT,
+   PRIMARY KEY(id_eurExt),
+   FOREIGN KEY(id_eurExt) REFERENCES demandeurExterne(id_eurExt)
+);
+
+CREATE TABLE demandeurInterne(
+   id_eurInt INT,
+   CV_eurInt VARCHAR(50) NOT NULL,
+   id_demI INT NOT NULL,
+   id_ann INT NOT NULL,
+   id_visit INT NOT NULL,
+   PRIMARY KEY(id_eurInt),
+   FOREIGN KEY(id_demI) REFERENCES demande_demI(id_demI),
+   FOREIGN KEY(id_ann) REFERENCES Annonce(id_ann),
+   FOREIGN KEY(id_visit) REFERENCES visiteur(id_visit)
+);
+
+CREATE TABLE demande_accInt(
+   id_eurInt INT,
+   PRIMARY KEY(id_eurInt),
+   FOREIGN KEY(id_eurInt) REFERENCES demandeurInterne(id_eurInt)
+);
+
+CREATE TABLE demande_refInt(
+   id_eurInt INT,
+   PRIMARY KEY(id_eurInt),
+   FOREIGN KEY(id_eurInt) REFERENCES demandeurInterne(id_eurInt)
+);
+
+CREATE TABLE discuter(
+   id_admin INT,
+   id_visit INT,
+   date_mess DATE NOT NULL,
+   message VARCHAR(50),
+   PRIMARY KEY(id_admin, id_visit),
+   FOREIGN KEY(id_admin) REFERENCES admin(id_admin),
+   FOREIGN KEY(id_visit) REFERENCES visiteur(id_visit)
+);
+
+CREATE TABLE visiter(
+   id_pub INT,
+   id_visit INT,
+   date_visiter DATE NOT NULL,
+   PRIMARY KEY(id_pub, id_visit),
+   FOREIGN KEY(id_pub) REFERENCES publication(id_pub),
+   FOREIGN KEY(id_visit) REFERENCES visiteur(id_visit)
+);
+
+CREATE TABLE Asso_16_1(
+   id_admin INT,
+   id_demEx INT,
+   note DECIMAL(15,2) NOT NULL,
+   PRIMARY KEY(id_admin, id_demEx),
+   FOREIGN KEY(id_admin) REFERENCES admin(id_admin),
+   FOREIGN KEY(id_demEx) REFERENCES demande_demE(id_demEx)
+);
+
+CREATE TABLE Asso_20(
+   id_admin INT,
+   id_demI INT,
+   note DECIMAL(15,2) NOT NULL,
+   PRIMARY KEY(id_admin, id_demI),
+   FOREIGN KEY(id_admin) REFERENCES admin(id_admin),
+   FOREIGN KEY(id_demI) REFERENCES demande_demI(id_demI)
+);
+CREATE TABLE admin(
+   id_admin INT,
+   nom_admin VARCHAR(250) NOT NULL,
+   prenom_admin VARCHAR(250) NOT NULL,
+   motdepass_admin VARCHAR(50) NOT NULL,
+   email_admin VARCHAR(110) NOT NULL,
+   type_admin VARCHAR(50),
+   PRIMARY KEY(id_admin),
+   UNIQUE(email_admin),
+   UNIQUE(type_admin)
+);
+
+CREATE TABLE nosMetier(
+   id_nosMet INT,
+   nom_nosMet VARCHAR(100) NOT NULL,
+   description_nosMet VARCHAR(250) NOT NULL,
+   PRIMARY KEY(id_nosMet),
+   UNIQUE(nom_nosMet),
+   UNIQUE(description_nosMet)
+);
+
+CREATE TABLE Annonce(
+   id_ann INT,
+   annonce TEXT NOT NULL,
+   typeAnn VARCHAR(50) NOT NULL,
+   id_nosMet INT NOT NULL,
+   PRIMARY KEY(id_ann),
+   FOREIGN KEY(id_nosMet) REFERENCES nosMetier(id_nosMet)
+);
+
+CREATE TABLE titre_pub(
+   id_tittrePub INT,
+   titre_pub VARCHAR(250) NOT NULL,
+   PRIMARY KEY(id_tittrePub),
+   UNIQUE(titre_pub)
+);
+
+CREATE TABLE sousTitre_pub(
+   id_sousTitre INT,
+   soustitre_pub VARCHAR(100) NOT NULL,
+   id_tittrePub INT NOT NULL,
+   PRIMARY KEY(id_sousTitre),
+   UNIQUE(soustitre_pub),
+   FOREIGN KEY(id_tittrePub) REFERENCES titre_pub(id_tittrePub)
+);
+
+CREATE TABLE Chef(
+   id_lead INT,
+   imageLead TEXT NOT NULL,
+   nomLead VARCHAR(100) NOT NULL,
+   prenomLead VARCHAR(100) NOT NULL,
+   id_nosMet INT NOT NULL,
+   PRIMARY KEY(id_lead),
+   FOREIGN KEY(id_nosMet) REFERENCES nosMetier(id_nosMet)
+);
+
+CREATE TABLE sexe(
+   id_sexe INT,
+   sexe VARCHAR(100) NOT NULL,
+   PRIMARY KEY(id_sexe)
+);
+
+CREATE TABLE competence(
+   id_compet INT,
+   competence TEXT NOT NULL,
+   id_nosMet INT NOT NULL,
+   PRIMARY KEY(id_compet),
+   FOREIGN KEY(id_nosMet) REFERENCES nosMetier(id_nosMet)
+);
+
+CREATE TABLE typeContrat(
+   id_typeContra INT,
+   type_Contrat VARCHAR(50) NOT NULL,
+   PRIMARY KEY(id_typeContra),
+   UNIQUE(type_Contrat)
+);
+
+CREATE TABLE contact_ext(
+   id_contExt INT,
+   date_contExt DATE NOT NULL,
+   contact_contExt TEXT NOT NULL,
+   nom_contExt VARCHAR(150) NOT NULL,
+   prenom_contEx VARCHAR(150) NOT NULL,
+   email_contExt VARCHAR(150) NOT NULL,
+   PRIMARY KEY(id_contExt)
+);
+
+CREATE TABLE demande_demE(
+   id_demEx INT(11) AUTO_INCREMENT,
+   date_demEx DATE NOT NULL,
+   objet_demEx VARCHAR(50) NOT NULL,
+   contenu_demEx VARCHAR(50) NOT NULL,
+   PRIMARY KEY(id_demEx)
+);
+
+
+CREATE TABLE objet_demandei(
+   id_objetDemI INT,
+   objet_demandeI VARCHAR(100) NOT NULL,
+   PRIMARY KEY(id_objetDemI)
+);
+
+CREATE TABLE publication(
+   id_pub INT,
+   date_pub DATE NOT NULL,
+   info_pub VARCHAR(250) NOT NULL,
+   image VARCHAR(250) NOT NULL,
+   id_tittrePub INT NOT NULL,
+   PRIMARY KEY(id_pub),
+   UNIQUE(image),
+   FOREIGN KEY(id_tittrePub) REFERENCES titre_pub(id_tittrePub)
+);
+
+CREATE TABLE visiteur(
+   id_visit INT,
+   nom_visit VARCHAR(150) NOT NULL,
+   prenom_visit VARCHAR(150) NOT NULL,
+   tel_visit VARCHAR(16) NOT NULL,
+   email_visit VARCHAR(250) NOT NULL,
+   motdepass_visit VARCHAR(11) NOT NULL,
+   adress_visit VARCHAR(100) NOT NULL,
+   type_visit VARCHAR(50) NOT NULL,
+   image_visit VARCHAR(250) NOT NULL,
+   id_nosMet INT NOT NULL,
+   id_sexe INT NOT NULL,
+   PRIMARY KEY(id_visit),
+   UNIQUE(tel_visit),
+   UNIQUE(email_visit),
+   FOREIGN KEY(id_nosMet) REFERENCES nosMetier(id_nosMet),
+   FOREIGN KEY(id_sexe) REFERENCES sexe(id_sexe)
+);
+
+CREATE TABLE contact(
+   id_cont INT,
+   date_cont DATE NOT NULL,
+   contact_cont TEXT NOT NULL,
+   id_visit INT,
+   PRIMARY KEY(id_cont),
+   FOREIGN KEY(id_visit) REFERENCES visiteur(id_visit)
+);
+
+CREATE TABLE informSuppl(
+   id_nosMet INT,
+   salaire VARCHAR(200) NOT NULL,
+   horairTrav VARCHAR(40) NOT NULL,
+   id_typeContra INT NOT NULL,
+   PRIMARY KEY(id_nosMet),
+   FOREIGN KEY(id_nosMet) REFERENCES nosMetier(id_nosMet),
+   FOREIGN KEY(id_typeContra) REFERENCES typeContrat(id_typeContra)
+);
+
+CREATE TABLE demandeurExterne(
+   id_eurExt INT,
+   nom_eurExt VARCHAR(100) NOT NULL,
+   prenom_eurExt VARCHAR(100) NOT NULL,
+   tel_eurExt VARCHAR(16) NOT NULL,
+   email_eurExt VARCHAR(150) NOT NULL,
+   adresse_eurExt VARCHAR(100) NOT NULL,
+   cv_demExt VARCHAR(50) NOT NULL,
+   id_demEx INT NOT NULL,
+   id_ann INT NOT NULL,
+   id_sexe INT NOT NULL,
+   PRIMARY KEY(id_eurExt),
+   UNIQUE(tel_eurExt),
+   UNIQUE(email_eurExt),
+   FOREIGN KEY(id_demEx) REFERENCES demande_demE(id_demEx),
+   FOREIGN KEY(id_ann) REFERENCES Annonce(id_ann),
+   FOREIGN KEY(id_sexe) REFERENCES sexe(id_sexe)
+);
+
+CREATE TABLE demande_demI(
+   id_demI INT,
+   contenu_demI VARCHAR(50) NOT NULL,
+   date_demI DATE NOT NULL,
+   ficheDePoste_demI VARCHAR(50) NOT NULL,
+   id_objetDemI INT NOT NULL,
+   PRIMARY KEY(id_demI),
+   FOREIGN KEY(id_objetDemI) REFERENCES objet_demandei(id_objetDemI)
+);
+
+CREATE TABLE demande_accExt(
+   id_eurExt INT,
+   PRIMARY KEY(id_eurExt),
+   FOREIGN KEY(id_eurExt) REFERENCES demandeurExterne(id_eurExt)
+);
+
+CREATE TABLE demande_refExt(
+   id_eurExt INT,
+   PRIMARY KEY(id_eurExt),
+   FOREIGN KEY(id_eurExt) REFERENCES demandeurExterne(id_eurExt)
+);
+
+CREATE TABLE demandeurInterne(
+   id_eurInt INT,
+   CV_eurInt VARCHAR(50) NOT NULL,
+   id_demI INT NOT NULL,
+   id_ann INT NOT NULL,
+   id_visit INT NOT NULL,
+   PRIMARY KEY(id_eurInt),
+   FOREIGN KEY(id_demI) REFERENCES demande_demI(id_demI),
+   FOREIGN KEY(id_ann) REFERENCES Annonce(id_ann),
+   FOREIGN KEY(id_visit) REFERENCES visiteur(id_visit)
+);
+
+CREATE TABLE demande_accInt(
+   id_eurInt INT,
+   PRIMARY KEY(id_eurInt),
+   FOREIGN KEY(id_eurInt) REFERENCES demandeurInterne(id_eurInt)
+);
+
+CREATE TABLE demande_refInt(
+   id_eurInt INT,
+   PRIMARY KEY(id_eurInt),
+   FOREIGN KEY(id_eurInt) REFERENCES demandeurInterne(id_eurInt)
+);
+
+CREATE TABLE discuter(
+   id_admin INT,
+   id_visit INT,
+   date_mess DATE NOT NULL,
+   message VARCHAR(50),
+   PRIMARY KEY(id_admin, id_visit),
+   FOREIGN KEY(id_admin) REFERENCES admin(id_admin),
+   FOREIGN KEY(id_visit) REFERENCES visiteur(id_visit)
+);
+
+CREATE TABLE visiter(
+   id_pub INT,
+   id_visit INT,
+   date_visiter DATE NOT NULL,
+   PRIMARY KEY(id_pub, id_visit),
+   FOREIGN KEY(id_pub) REFERENCES publication(id_pub),
+   FOREIGN KEY(id_visit) REFERENCES visiteur(id_visit)
+);
+
+CREATE TABLE Asso_16_1(
+   id_admin INT,
+   id_demEx INT,
+   note DECIMAL(15,2) NOT NULL,
+   PRIMARY KEY(id_admin, id_demEx),
+   FOREIGN KEY(id_admin) REFERENCES admin(id_admin),
+   FOREIGN KEY(id_demEx) REFERENCES demande_demE(id_demEx)
+);
+
+CREATE TABLE Asso_20(
+   id_admin INT,
+   id_demI INT,
+   note DECIMAL(15,2) NOT NULL,
+   PRIMARY KEY(id_admin, id_demI),
+   FOREIGN KEY(id_admin) REFERENCES admin(id_admin),
+   FOREIGN KEY(id_demI) REFERENCES demande_demI(id_demI)
+);

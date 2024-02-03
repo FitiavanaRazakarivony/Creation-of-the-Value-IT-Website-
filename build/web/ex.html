@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap V5/css/bootstrap.min.css">
+
+</head>
+<body>
+   
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="Objet-tab" data-bs-toggle="tab" data-bs-target="#Objet" type="button" role="tab" aria-controls="Objet" aria-selected="true">Objet de la demande</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="metiers-tab" data-bs-toggle="tab" data-bs-target="#metiers" type="button" role="tab" aria-controls="metiers" aria-selected="false">Nos metiers</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contrat-tab" data-bs-toggle="tab" data-bs-target="#contrat" type="button" role="tab" aria-controls="contrat" aria-selected="false">Type contrat</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="Information-tab" data-bs-toggle="tab" data-bs-target="#Information" type="button" role="tab" aria-controls="Information" aria-selected="false">Information supplementaire</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="Competence-tab" data-bs-toggle="tab" data-bs-target="#Competence" type="button" role="tab" aria-controls="Competence" aria-selected="false">Competence</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="Annonce-tab" data-bs-toggle="tab" data-bs-target="#Annonce" type="button" role="tab" aria-controls="Annonce" aria-selected="false">Annonce</button>
+    </li>
+
+  </ul>
+  
+  <div class="tab-content">
+    <!-- objet de la demande -->
+    <div class="tab-pane active" id="Objet" role="tabpanel" aria-labelledby="Objet-tab">Objet</div>
+    <!-- fin objet de la demande -->
+
+    <!-- nos metiers -->
+    <div class="tab-pane" id="metiers" role="tabpanel" aria-labelledby="metiers-tab">.metiers.</div>
+    <!-- fin nos metiers -->
+
+    <!-- type contrat -->
+    <div class="tab-pane" id="contrat" role="tabpanel" aria-labelledby="contrat-tab">.contrat..</div>
+    <!-- fin type contrat -->
+    
+    <!-- information supplementaire -->
+    <div class="tab-pane" id="Information" role="tabpanel" aria-labelledby="Information-tab">..Information.</div>
+    <!-- fin information supplementaire -->
+
+    <!-- competence -->
+    <div class="tab-pane" id="Competence" role="tabpanel" aria-labelledby="Competence-tab">.Competence..</div>
+    <!-- fin competence -->
+
+    <!-- annonce -->
+    <div class="tab-pane" id="Annonce" role="tabpanel" aria-labelledby="Annonce-tab">..Annonce.</div>
+    <!-- fin annonce -->
+  </div>
+ 
+</body>
+ 
+<script>
+  var firstTabEl = document.querySelector('#myTab li:last-child a')
+  var firstTab = new bootstrap.Tab(firstTabEl)
+
+  firstTab.show()
+</script>
+
+  <script src="bootstrap V5/js/bootstrap.bundle.min.js"></script>
+</html>
