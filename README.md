@@ -3,7 +3,8 @@
 1.	Explication
    
 ![[Organigramme de la logique de gestion]](https://github.com/user-attachments/assets/a16a51ee-e570-4fc6-883c-0f9f617154d3)
-
+  Figure : la Organigramme de la logique de gestion
+   
   Un visiteur ou un employé qui trouve l’annonce sur notre site Web et peut postuler pour la fonction.
   L'administrateur a la possibilité de vérifier sa demande et si elle est compatible avec la mission, le demandeur a engagé de même aussi s'il s'agit d'un agent.
 
